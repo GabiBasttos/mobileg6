@@ -1,6 +1,6 @@
 import React from "react";
 import {styles} from './style'
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 type PropsButton = {
     title: string;
@@ -13,9 +13,9 @@ export function ButtonComponents({title, recebefuncao}: PropsButton){
 
         <>
         <TouchableOpacity onPress={recebefuncao}>
-            <Text style={styles.textButton}>
-                {title}
-            </Text>
+            <View style={styles.buttonContainer}>
+                <Text style={styles.textButton}>{title}</Text>
+            </View>
         </TouchableOpacity>
         
         </>

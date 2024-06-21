@@ -10,7 +10,7 @@ export const Login = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const navegando = useNavigation();
+    // const navegando = useNavigation();
 
     const handleEmail = (value: string) => {
         setEmail(value);
@@ -21,12 +21,10 @@ export const Login = () => {
     }
 
     const handleLogin = () => {
-        if(email) {
-          navegando.navigate("StackTabsPages", { name: "Login" })
-        } else {
-          Alert.alert("Credenciais invalidas!")
-        }
-    }
+
+        Alert.alert("Credenciais invalidas!")
+
+  }
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

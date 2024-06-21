@@ -32,9 +32,9 @@ export default function App() {
   }
 
   return (
-    <View style={{ marginTop: 100 }}>
+    <View>
+      <StatusBar style="auto"/>
       <Home />
-      <StatusBar style="auto" />
     </View>
   );
 }

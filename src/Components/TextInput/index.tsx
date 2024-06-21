@@ -1,12 +1,12 @@
 import React from "react";
 import { TextInput } from "react-native";
 import { styles } from "./style";
+
 type PropsComponent = {
   recebeplaceholder: string;
   recebevalue: string;
   recebefuncao: (value: string) => void;
   recebetipoinput: boolean;
-  onChangeText: (value: string) => void;
   secureTextEntry?: boolean;
 };
 

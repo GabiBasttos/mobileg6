@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     image:{
        width: 225,
        height: 225,
-       marginTop: 125,
+       marginTop: 10,
        marginLeft: 95,
        alignItems: 'center',
        justifyContent: "center",

@@ -21,10 +21,12 @@ export const Login = () => {
     }
 
     const handleLogin = () => {
-
-        Alert.alert("Credenciais invalidas!")
-
-  }
+        if(email) {
+          navegando.navigate("StackTabsPages", { name: "Login" })
+        } else {
+          Alert.alert("Credenciais invalidas!")
+        }
+      }
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

@@ -11,7 +11,7 @@ export type ParametrosDaRota ={
 
 const StackNavegacao = createNativeStackNavigator<ParametrosDaRota>();
 
-export function StactRoutes(){
+export function StackRoutes(){
 
     return(
         <NavigationContainer>

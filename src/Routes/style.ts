@@ -2,9 +2,12 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     imagetab:{
-        width: 10,
-        height:10,
+        width: 35,
+        height:35,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginLeft: 5,
+        marginTop: 15,
     }
-
-}
+},
 )

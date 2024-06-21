@@ -2,7 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Home } from "../Pages/Home";
 import Icon from "@react-native-vector-icons/ionicons";
-import { Text } from "react-native";
+import { Image, Text } from "react-native";
+// import iconehome from "../../Assets/iconeHome.png";
+// import {styles} from './style'
 
 const TabAll = createBottomTabNavigator();
 
@@ -15,10 +17,10 @@ export function BottomTabRoutes () {
         screenOptions={{
             title:"", tabBarLabel:"",
             tabBarStyle:{
-          backgroundColor:'#000',
+          backgroundColor:'#fff',
           height:60
       }, headerStyle:{
-          backgroundColor: '#000',
+          backgroundColor: '#fff',
     
       },
       }}>
@@ -26,7 +28,7 @@ export function BottomTabRoutes () {
           options={{
             tabBarIcon: ({  focused }) => (
             <>
-              <Icon name="home" color={focused ? '#000' : '#000'} size={20} />
+             {/* <Image source={iconehome} style={styles.imagetab} /> */}
               <Text  style={{fontSize:10, color: focused ?'#fff' : '#fff'}}> Home</Text>
             </>
             ),

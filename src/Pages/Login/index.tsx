@@ -14,17 +14,18 @@ import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
 
 export const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  // const navegando = useNavigation();
-
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navegando = useNavigation();
-.
-  const handlePassword = (value: string) => {
-    setPassword(value);
-  };
+
+    const handleEmail = (value: string) => {
+        setEmail(value);
+      };
+    
+      const handlePassword = (value: string) => {
+        setPassword(value);
+      };
+
 
   const handleLogin = () => {
     if (email) {
@@ -58,7 +59,7 @@ export const Login = () => {
           <TextInputComponent
             recebeplaceholder="Digite sua senha"
             recebefuncao={handlePassword}
-            recebetipoinput={false}
+            recebetipoinput={true}
             recebevalue={password}
           />
 

@@ -27,7 +27,6 @@ export function Home() {
       <TextInputComponent
         recebeplaceholder="Pesquisar Pokémon"
         recebevalue={search}
-        onChangeText={setSearch}
         recebetipoinput={false}
         recebefuncao={setSearch} // Pass setSearch here
       />

@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { Login } from "../Pages/Login";
-import { ButtonTabRoutes } from "./BottomTabRoutes";
+import { BottomTabRoutes } from "./BottomTabRoutes";
 
 export type ParametrosDaRota ={
     StackLogin: {name: string};
@@ -17,8 +17,7 @@ export function StackRoutes(){
         <NavigationContainer>
             <StackNavegacao.Navigator screenOptions={{headerShown: false}}>
                 <StackNavegacao.Screen name='StackLogin' component={Login}/>
-                {/* <StackNavegacao.Screen name='StackTabsPages' component={ButtonTabRoutes}/> */}
-
+                <StackNavegacao.Screen name='StackTabsPages' component={BottomTabRoutes}/>
             </StackNavegacao.Navigator>
         </NavigationContainer>
     )

@@ -10,7 +10,7 @@ export const Login = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    // const navegando = useNavigation();
+    const navegando = useNavigation();
 
     const handleEmail = (value: string) => {
         setEmail(value);

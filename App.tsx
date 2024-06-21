@@ -13,6 +13,8 @@ import {
   Inter_900Black,
 } from "@expo-google-fonts/inter";
 import { Login } from "./src/Pages/Login";
+import { Routes } from "./src/Routes";
+import { Home } from "./src/Pages/Home";
 
 export default function App() {
   const [fonteLoaded] = useFonts({
@@ -32,9 +34,9 @@ export default function App() {
   }
 
   return (
-    <View>
+    <>
      <StatusBar style="auto"/>
-     <Login/>
-    </View>
+     <Routes/>
+    </>
   );
 }

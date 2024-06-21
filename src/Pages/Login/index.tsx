@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { styles } from "./style";
-import iconehome from "../../Assets/iconeHome.png";
+import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
 
@@ -40,7 +40,7 @@ export const Login = () => {
       <>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
-            <Image source={iconehome} style={styles.image} />
+            <Image source={iconeLogin} style={styles.image} />
           </View>
           <View>
             <Text style={styles.bemvindo}>Bem-vindo!</Text>

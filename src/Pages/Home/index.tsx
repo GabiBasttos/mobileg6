@@ -24,7 +24,7 @@ export function Home() {
       <Text style={styles.home_descricao}>
         <Text>Pesquise um pokémon específico utilizando o seu nome.</Text>
       </Text>
-      <TextInputComponent
+      {/* <TextInputComponent
         recebeplaceholder="Pesquisar Pokémon"
         recebevalue={search}
         onChangeText={setSearch}
@@ -35,7 +35,7 @@ export function Home() {
         {filteredPokemons.map((pokemon) => (
           <Card key={pokemon.name} name={pokemon.name} url={pokemon.url} />
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 }

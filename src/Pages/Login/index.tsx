@@ -12,27 +12,21 @@ import { styles } from "./style";
 import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
+import { useAuth } from "../../Hooks/useAuth";
 
 export const Login = () => {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const navegando = useNavigation();
 
-    const handleEmail = (value: string) => {
-        setEmail(value);
-      };
-    
-      const handlePassword = (value: string) => {
-        setPassword(value);
-      };
+  const { email, setEmail, setPassword, password, loginAutentication} = useAuth();
+
+  const handleEmail = (value: string) => setEmail(value);
+
+
+  const handlePassword = (value: string) => setPassword(value);
+
 
 
   const handleLogin = () => {
-    if (email) {
-      navegando.navigate("StackTabsPages", { name: "Login" });
-    } else {
-      Alert.alert("Credenciais invalidas!");
-    }
+    loginAutentication(email, password)
   };
 
   return (
@@ -50,12 +44,12 @@ export const Login = () => {
           </View>
 
           <TextInputComponent
-            recebeplaceholder="Digite seu nome"
+            recebeplaceholder="Digite seu email"
             // value={inputValue}
             // onChangeText={(value) => setInputValue (value)} 
-            recebefuncao={handleNome}
+            recebefuncao={handleEmail}
             recebetipoinput={false}
-            recebevalue={nome}
+            recebevalue={email}
           />
 
           <TextInputComponent
@@ -65,7 +59,7 @@ export const Login = () => {
             recebevalue={password}
           />
 
-          { <ButtonComponents title="Entrar" /*onPress={handleAsyncStorage}*/ recebefuncao={handleLogin} /> }
+          {<ButtonComponents title="Entrar" /*onPress={handleAsyncStorage}*/ recebefuncao={handleLogin} />}
         </View>
       </>
     </TouchableWithoutFeedback>

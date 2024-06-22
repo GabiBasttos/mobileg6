@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Home } from "../Pages/Home";
-import Icon from '@expo/vector-icons/Ionicons';
 import { Image, Text } from "react-native";
 import iconehome from "../Assets/iconeHome.png";
 import {styles} from './style'
@@ -30,8 +29,7 @@ export function BottomTabRoutes() {
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <>
-                            <Image source={iconehome} style={{tintColor: focused ? '#EA5D60' : '#000',  width: 35,
-        height:35, }} />
+                            <Image source={iconehome} style={{tintColor: focused ? '#EA5D60' : '#000' }} />
                             <Text style={{ fontSize: 10, color: focused ? '#EA5D60' : '#000', fontWeight: 'bold'}}> Home</Text>
                         </>
                     ),

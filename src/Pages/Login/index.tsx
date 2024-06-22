@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Image,
@@ -12,19 +12,27 @@ import { styles } from "./style";
 import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
-import { useAuth } from "../../Hooks/useAuth";
 
 export const Login = () => {
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const navegando = useNavigation();
 
-  const { email, setEmail, password, setPassword, loginAutentication} = useAuth();
-  const navegando = useNavigation();
+    const handleEmail = (value: string) => {
+        setEmail(value);
+      };
+    
+      const handlePassword = (value: string) => {
+        setPassword(value);
+      };
 
-  const handleEmail = (value: string) => setEmail(value)
- 
-  const handlePassword = (value: string) => setPassword(value);
 
   const handleLogin = () => {
-    loginAutentication(email, password)
+    if (email) {
+      navegando.navigate("StackTabsPages", { name: "Login" });
+    } else {
+      Alert.alert("Credenciais invalidas!");
+    }
   };
 
   return (
@@ -42,10 +50,12 @@ export const Login = () => {
           </View>
 
           <TextInputComponent
-            recebeplaceholder="Digite seu email"
-            recebefuncao={handleEmail}
+            recebeplaceholder="Digite seu nome"
+            // value={inputValue}
+            // onChangeText={(value) => setInputValue (value)} 
+            recebefuncao={handleNome}
             recebetipoinput={false}
-            recebevalue={email}
+            recebevalue={nome}
           />
 
           <TextInputComponent
@@ -55,7 +65,7 @@ export const Login = () => {
             recebevalue={password}
           />
 
-          <ButtonComponents title="Entrar" recebefuncao={handleLogin} />
+          { <ButtonComponents title="Entrar" /*onPress={handleAsyncStorage}*/ recebefuncao={handleLogin} /> }
         </View>
       </>
     </TouchableWithoutFeedback>

@@ -3,7 +3,6 @@ import React from "react";
 import { Home } from "../Pages/Home";
 import { Image, Text } from "react-native";
 import iconehome from "../Assets/iconeHome.png";
-import {styles} from './style'
 import {Perfil} from '../Pages/Perfil'
 import Person from '../Assets/iconePerfil.png'
 import { Login } from "../Pages/Login";

@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
   card_container: {
     width: 326,
     height: 114,
-    backgroundColor: "#8BBE8A",
     borderRadius: 10,
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -15,6 +14,8 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 10,
+    marginTop: 10,
+    marginBottom: 20
   },
   card_fundo: {
     height: 114, 

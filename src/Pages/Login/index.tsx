@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Image,
@@ -12,14 +12,33 @@ import { styles } from "./style";
 import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Login = () => {
-    const [email, setEmail] = useState<string>('');
+    const [nome, setNome] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navegando = useNavigation();
+    // const [inputValue, setInputValue] = useState('')
+    // const [value, setValue]= useState('') 
 
-    const handleEmail = (value: string) => {
-        setEmail(value);
+    // async function handleAsyncStorage(){
+    //   //armazenar valor no asyncstorage
+    //   await AsyncStorage.setItem("@App1", inputValue)
+    //   getData()
+    // }
+
+    // async function getData(){
+    //   const response = await AsyncStorage.getItem("@App1")
+    //   if(response){
+    //     setValue(response)
+    //   }
+    // }
+    // useEffect(() =>{
+    //   getData()
+    // },[])
+
+    const handleNome = (value: string) => {
+        setNome(value);
       };
     
       const handlePassword = (value: string) => {
@@ -28,7 +47,7 @@ export const Login = () => {
 
 
   const handleLogin = () => {
-    if (email) {
+    if (nome) {
       navegando.navigate("StackTabsPages", { name: "Login" });
     } else {
       Alert.alert("Credenciais invalidas!");
@@ -50,10 +69,12 @@ export const Login = () => {
           </View>
 
           <TextInputComponent
-            recebeplaceholder="Digite seu email"
-            recebefuncao={handleEmail}
+            recebeplaceholder="Digite seu nome"
+            // value={inputValue}
+            // onChangeText={(value) => setInputValue (value)} 
+            recebefuncao={handleNome}
             recebetipoinput={false}
-            recebevalue={email}
+            recebevalue={nome}
           />
 
           <TextInputComponent
@@ -63,7 +84,7 @@ export const Login = () => {
             recebevalue={password}
           />
 
-          <ButtonComponents title="Entrar" recebefuncao={handleLogin} />
+          { <ButtonComponents title="Entrar" /*onPress={handleAsyncStorage}*/ recebefuncao={handleLogin} /> }
         </View>
       </>
     </TouchableWithoutFeedback>

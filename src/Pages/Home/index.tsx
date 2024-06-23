@@ -40,7 +40,7 @@ export function Home() {
     <View style={styles.home_container}>
       <Text style={styles.home_titulo}>Pokédex</Text>
       <Text style={styles.home_descricao}>
-        Pesquise um pokémon específico utilizando o seu nome.
+        Você pode pesquisar por um pokémon específico usando o seu nome na barra de pesquisa.
       </Text>
       <TextInputComponent
         recebeplaceholder="Pesquisar Pokémon"

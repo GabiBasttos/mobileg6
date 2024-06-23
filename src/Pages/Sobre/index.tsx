@@ -1,53 +1,72 @@
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
-import { style } from "./style";
+import { useRoute, RouteProp } from "@react-navigation/native";
+import axios from "axios";
+import { styles } from "./style";
+
+type RouteParams = {
+  SobrePokemon: {
+    pokemonUrl: string;
+  };
+};
 
 export function SobrePokemon() {
+  const route = useRoute<RouteProp<RouteParams, "SobrePokemon">>();
+  const { pokemonUrl } = route.params;
+
+  const [pokemonData, setPokemonData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      try {
+        const response = await axios.get(pokemonUrl);
+        setPokemonData(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar informações do Pokémon:", error);
+      }
+    };
+
+    fetchPokemonData();
+  }, [pokemonUrl]);
+
+  if (!pokemonData) {
+    return (
+      <View>
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
+
   return (
     <View>
-      <View style={style.container_top}>
+      <View style={styles.container_top}>
         <TouchableOpacity>
           <Image
             source={require("../../Assets/setaVoltar.png")}
             alt="seta de voltar"
-            style={style.seta}
+            style={styles.seta}
           />
         </TouchableOpacity>
 
         <Image
-          source={require("../../Assets/Pokémon/bulbasaur.png")}
-          alt="foto do bulbasaur"
-          style={style.pokemon}
+          source={{ uri: pokemonData.sprites.front_default }}
+          alt={`Imagem de ${pokemonData.name}`}
+          style={styles.pokemon}
         />
 
-        <Text>Bulbasaur</Text>
-        <Text>#001</Text>
-        <Text>Sobre o Pokemon</Text>
+        <Text style={styles.name}>
+          {pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}
+        </Text>
+        <Text style={styles.number}>
+          #{pokemonData.id.toString().padStart(3, "0")}
+        </Text>
+        <Text style={styles.about}>Sobre o Pokémon</Text>
       </View>
 
-      <View style={style.container_bottom}>
+      <View style={styles.container_bottom}>
         <Text>Descrição</Text>
-        <Text>
-          Bulbasaur can be seen napping in bright sunlight. There is a seed on
-          its back. By soaking up the sun's rays, the seed grows progressively
-          larger.
-        </Text>
+        <Text>{pokemonData.description}</Text>
         <Text>Evoluções</Text>
-        <Image
-          source={require("../../Assets/Pokémon/bulbasaur.png")}
-          alt="foto do bulbasaur"
-          style={style.pokemon}
-        />
-        <Image
-          source={require("../../Assets/Pokémon/ivysaur.png")}
-          alt="foto do ivysaur"
-          style={style.pokemon}
-        />
-        <Image
-          source={require("../../Assets/Pokémon/venusaur.png")}
-          alt="foto do venusaur"
-          style={style.pokemon}
-        />
       </View>
     </View>
   );

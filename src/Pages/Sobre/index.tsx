@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { styles } from "./style";
+import tipos from "../../Assets/Tipos/tipos";
 
 type RouteParams = {
   SobrePokemon: {
@@ -29,6 +30,12 @@ const tipoCor: { [key: string]: string } = {
   rock: "#D4C294",
   steel: "#4C91B2",
   water: "#58ABF6",
+};
+
+type PokemonType = {
+  type: {
+    name: keyof typeof tipoCor;
+  };
 };
 
 export function SobrePokemon() {
@@ -97,14 +104,13 @@ export function SobrePokemon() {
     );
   }
 
-    const backgroundColor = pokemonData.types.length
-      ? tipoCor[pokemonData.types[0].type.name]
-      : "#FFF";
+  const backgroundColor = pokemonData.types.length
+    ? tipoCor[pokemonData.types[0].type.name]
+    : "#FFF";
 
-    const color = pokemonData.types.length
-      ? tipoCor[pokemonData.types[0].type.name]
-      : "#FFF";
-
+  const color = pokemonData.types.length
+    ? tipoCor[pokemonData.types[0].type.name]
+    : "#FFF";
 
   return (
     <ScrollView style={{ backgroundColor }}>
@@ -135,19 +141,23 @@ export function SobrePokemon() {
           style={styles.pokemon}
         />
 
-        <Text style={styles.nome}>
-          {pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}
-        </Text>
-
-        <Text style={styles.number}>
-          #{pokemonData.id.toString().padStart(3, "0")}
-        </Text>
-
-        {pokemonData.types.map((typeInfo: any) => (
-          <Text key={typeInfo.type.name} style={styles.tipo}>
-            {typeInfo.type.name}
+        <View style={styles.container_pokemon}>
+          <Text style={styles.nome}>
+            {pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}
           </Text>
-        ))}
+
+          <Text style={styles.number}>
+            #{pokemonData.id.toString().padStart(3, "0")}
+          </Text>
+
+          {pokemonData.types.map((typeInfo: any) => (
+            <Image
+              key={typeInfo.type.name}
+              source={tipos[typeInfo.type.name as keyof typeof tipos]}
+              style={styles.tipoImagem}
+            />
+          ))}
+        </View>
 
         <Text style={styles.sobrePokemon}>Sobre o Pokémon:</Text>
       </View>
@@ -159,7 +169,8 @@ export function SobrePokemon() {
         <Text style={[styles.topicos, { color }]}>Habilidades:</Text>
         {pokemonData.abilities.map((abilityInfo: any) => (
           <Text key={abilityInfo.ability.name} style={styles.text}>
-            {abilityInfo.ability.name}
+            {abilityInfo.ability.name.charAt(0).toUpperCase() +
+              abilityInfo.ability.name.slice(1)}
           </Text>
         ))}
 
@@ -174,7 +185,7 @@ export function SobrePokemon() {
               source={require("../../Assets/iconeSetaBaixo.png")}
               alt="seta para baixo"
               style={{
-                tintColor: "#000",
+                tintColor: backgroundColor,
                 top: 120,
                 right: 50,
                 width: 65,

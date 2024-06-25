@@ -30,12 +30,13 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 19,
     fontSize: 40,
-    fontWeight: "bold",
+    fontFamily: 'Inter_600SemiBold',
     color: "#000",
   },
   autentic: {
     fontSize: 20,
     textAlign: "center",
     marginBottom: 20,
+    fontFamily: 'Inter_400Regular'
   },
 });

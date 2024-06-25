@@ -43,7 +43,7 @@ export function Home() {
         Você pode pesquisar por um pokémon específico usando o seu nome na barra de pesquisa.
       </Text>
       <SearchInputComponent
-        recebeplaceholder="Pesquisar Pokémon"
+        recebeplaceholder="Qual pokémon você procura?"
         recebevalue={search}
         recebefuncao={setSearch}
         recebetipoinput={false}

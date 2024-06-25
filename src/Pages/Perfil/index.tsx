@@ -1,11 +1,63 @@
-import { View, Text } from "react-native";
-import React from "react";
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { useAuth } from '../../Hooks/useAuth';
+import { styles } from './style';
+import Bulbasaur from '../../Assets/Bulbasaur.png';
+import iconeHome from '../../Assets/iconeHome.png';
 
+const options = [
+  {
+    title: 'Pokedex',
+    icon: iconeHome,
+    link: 'https://www.pokemon.com/br/pokedex',
+  },
+  {
+    title: 'Assistir Pokémon',
+    icon: iconeHome,
+    link: 'https://www.pokemon.com/br/dibujos-animados',
+  },
+  {
+    title: 'Jogar Pokémon GO',
+    icon: iconeHome,
+    link: 'https://pokemongolive.com/?hl=pt_BR',
+  },
+];
 
 export function Perfil() {
+  const { email } = useAuth();
+
+  const handleOptionPress = (link: string) => {
+    Linking.openURL(link).catch((err) =>
+      console.error('Erro ao abrir o link:', err)
+    );
+  };
+
   return (
-    <View>
-      <Text>Perfil</Text>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton}>
+        <Text style={styles.backText}>&lt;</Text>
+      </TouchableOpacity>
+      <View style={styles.profileContainer}>
+        <Image
+          source={{ uri: 'https://pa1.aminoapps.com/6717/929240dcbfc57a52f8c701bf904ce2d358070397_hq.gif' }}
+          style={styles.profileImage}
+        />
+        <Text style={styles.greeting}>Olá, {email}!</Text>
+      </View>
+
+      {/* Menu de opções */}
+      <View style={styles.optionsContainer}>
+        {options.map((option, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[styles.optionItem, index === options.length - 1 && { borderBottomWidth: 0, paddingBottom: 0 }]}
+            onPress={() => handleOptionPress(option.link)}
+          >
+            <Image source={option.icon} style={styles.optionIcon} />
+            <Text style={styles.optionText}>{option.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
-};
+}

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "../../Components/Card";
 import { styles } from "./style";
-import { TextInputComponent } from "../../Components/TextInput";
+import { SearchInputComponent } from "../../Components/SearchInput";
 
 interface Pokemon {
   name: string;
@@ -42,7 +42,7 @@ export function Home() {
       <Text style={styles.home_descricao}>
         Você pode pesquisar por um pokémon específico usando o seu nome na barra de pesquisa.
       </Text>
-      <TextInputComponent
+      <SearchInputComponent
         recebeplaceholder="Pesquisar Pokémon"
         recebevalue={search}
         recebefuncao={setSearch}

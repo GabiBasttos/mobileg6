@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-  Alert,
   Image,
   Keyboard,
   Text,
@@ -13,7 +11,6 @@ import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
 import { useAuth } from "../../Hooks/useAuth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Login = () => {
   const { nome, setNome, setPassword, password, loginAutentication } =

@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import {
   useFonts,
   Inter_100Thin,
@@ -12,9 +11,7 @@ import {
   Inter_800ExtraBold,
   Inter_900Black,
 } from "@expo-google-fonts/inter";
-import { Login } from "./src/Pages/Login";
 import { Routes } from "./src/Routes";
-import { Home } from "./src/Pages/Home";
 
 export default function App() {
   const [fonteLoaded] = useFonts({
@@ -35,8 +32,8 @@ export default function App() {
 
   return (
     <>
-     <StatusBar style="auto"/>
-     <Routes/>
+      <StatusBar style="auto" />
+      <Routes />
     </>
   );
 }

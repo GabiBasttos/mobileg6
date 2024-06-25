@@ -1,4 +1,4 @@
-import { ParametrosDaRota } from './StackRoutes';
+import { ParametrosDaRota } from "./StackRoutes";
 
 declare global {
   namespace ReactNavigation {

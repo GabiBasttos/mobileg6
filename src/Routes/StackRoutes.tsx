@@ -15,16 +15,18 @@ export type ParametrosDaRota = {
 const StackNavegacao = createNativeStackNavigator<ParametrosDaRota>();
 
 export function StackRoutes() {
-
-    return (
-        <NavigationContainer>
-            <AuthProvider>
-                <StackNavegacao.Navigator screenOptions={{ headerShown: false }}>
-                    <StackNavegacao.Screen name='StackLogin' component={Login} />
-                    <StackNavegacao.Screen name='StackTabsPages' component={BottomTabRoutes} />
-                    <StackNavegacao.Screen name="SobrePokemon" component={SobrePokemon} />
-                </StackNavegacao.Navigator>
-            </AuthProvider>
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      <AuthProvider>
+        <StackNavegacao.Navigator screenOptions={{ headerShown: false }}>
+          <StackNavegacao.Screen name="StackLogin" component={Login} />
+          <StackNavegacao.Screen
+            name="StackTabsPages"
+            component={BottomTabRoutes}
+          />
+          <StackNavegacao.Screen name="SobrePokemon" component={SobrePokemon} />
+        </StackNavegacao.Navigator>
+      </AuthProvider>
+    </NavigationContainer>
+  );
 }

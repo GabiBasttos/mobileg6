@@ -1,42 +1,45 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
-import { useAuth, PropsContexto } from '../../Hooks/useAuth';
-import { styles } from './style';
-import iconeHome from '../../Assets/iconeHome.png';
+import React from "react";
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+import { useAuth, PropsContexto } from "../../Hooks/useAuth";
+import { styles } from "./style";
+import iconeHome from "../../Assets/iconeHome.png";
 import { useNavigation } from "@react-navigation/native";
 import dog from "../../Assets/dog.webp";
 
 const options = [
   {
-    title: 'Pokedex',
+    title: "Pokedex",
     icon: iconeHome,
-    link: 'https://www.pokemon.com/br/pokedex',
+    link: "https://www.pokemon.com/br/pokedex",
   },
   {
-    title: 'Assistir Pokémon',
+    title: "Assistir Pokémon",
     icon: iconeHome,
-    link: 'https://www.pokemon.com/br/dibujos-animados',
+    link: "https://www.pokemon.com/br/dibujos-animados",
   },
   {
-    title: 'Jogar Pokémon GO',
+    title: "Jogar Pokémon GO",
     icon: iconeHome,
-    link: 'https://pokemongolive.com/?hl=pt_BR',
+    link: "https://pokemongolive.com/?hl=pt_BR",
   },
 ];
 
 export function Perfil() {
-  const { nome } = useAuth() as PropsContexto; // Acesso ao nome através do contexto
+  const { nome } = useAuth() as PropsContexto;
   const navigation = useNavigation();
 
   const handleOptionPress = (link: string) => {
     Linking.openURL(link).catch((err) =>
-      console.error('Erro ao abrir o link:', err)
+      console.error("Erro ao abrir o link:", err)
     );
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
         <Image
           source={require("../../Assets/setaVoltar.png")}
           alt="seta de voltar"
@@ -44,10 +47,7 @@ export function Perfil() {
         />
       </TouchableOpacity>
       <View style={styles.profileContainer}>
-        <Image
-          source={dog}
-          style={styles.profileImage}
-        />
+        <Image source={dog} style={styles.profileImage} />
         <Text style={styles.greeting}>Olá, {nome}!</Text>
       </View>
 
@@ -55,7 +55,10 @@ export function Perfil() {
         {options.map((option, index) => (
           <TouchableOpacity
             key={index}
-            style={[styles.optionItem, index === options.length - 1 && styles.lastOptionItem]}
+            style={[
+              styles.optionItem,
+              index === options.length - 1 && styles.lastOptionItem,
+            ]}
             onPress={() => handleOptionPress(option.link)}
           >
             <Image source={option.icon} style={styles.optionIcon} />

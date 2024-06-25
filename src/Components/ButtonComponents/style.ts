@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
   textButton: {
     fontSize: 17,
     color: "#fff",
-    fontFamily: 'Inter_400Regular'
+    fontFamily: "Inter_400Regular",
   },
 });

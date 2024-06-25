@@ -15,13 +15,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 10,
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   card_fundo: {
-    height: 114, 
-    width: "85%", 
-    position: "absolute", 
-    right: 0
+    height: 114,
+    width: "85%",
+    position: "absolute",
+    right: 0,
   },
   card_nome: {
     alignSelf: "center",
@@ -38,10 +38,10 @@ export const styles = StyleSheet.create({
     fontSize: 24,
   },
   card_imagem: {
-    height: 142, 
-    width: 142, 
-    position: 'absolute', 
-    right: 10, 
-    top: -15
-  }
+    height: 142,
+    width: 142,
+    position: "absolute",
+    right: 10,
+    top: -15,
+  },
 });

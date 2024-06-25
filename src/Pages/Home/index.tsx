@@ -18,7 +18,9 @@ export function Home() {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+        const response = await axios.get(
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
+        );
         setAllPokemons(response.data.results);
         setFilteredPokemons(response.data.results);
       } catch (error) {
@@ -40,7 +42,8 @@ export function Home() {
     <View style={styles.home_container}>
       <Text style={styles.home_titulo}>Pokédex</Text>
       <Text style={styles.home_descricao}>
-        Você pode pesquisar por um pokémon específico usando o seu nome na barra de pesquisa.
+        Você pode pesquisar por um pokémon específico usando o seu nome na barra
+        de pesquisa.
       </Text>
       <SearchInputComponent
         recebeplaceholder="Qual pokémon você procura?"

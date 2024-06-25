@@ -32,11 +32,11 @@ const tipoCor: { [key: string]: string } = {
   water: "#58ABF6",
 };
 
-type PokemonType = {
-  type: {
-    name: keyof typeof tipoCor;
-  };
-};
+// type PokemonType = {
+//   type: {
+//     name: keyof typeof tipoCor;
+//   };
+// };
 
 export function SobrePokemon() {
   const route = useRoute<RouteProp<RouteParams, "SobrePokemon">>();
@@ -143,20 +143,24 @@ export function SobrePokemon() {
 
         <View style={styles.container_pokemon}>
           <Text style={styles.nome}>
-            {pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}
+            {pokemonData.name.charAt(0).toUpperCase() +
+              pokemonData.name.slice(1)}
           </Text>
 
           <Text style={styles.number}>
             #{pokemonData.id.toString().padStart(3, "0")}
           </Text>
 
-          {pokemonData.types.map((typeInfo: any) => (
-            <Image
-              key={typeInfo.type.name}
-              source={tipos[typeInfo.type.name as keyof typeof tipos]}
-              style={styles.tipoImagem}
-            />
-          ))}
+          <View
+            style={{ flex: 1, flexDirection: "row" }} >
+            {pokemonData.types.map((typeInfo: any) => (
+              <Image
+                key={typeInfo.type.name}
+                source={tipos[typeInfo.type.name as keyof typeof tipos]}
+                style={styles.tipoImagem}
+              />
+            ))}
+          </View>
         </View>
 
         <Text style={styles.sobrePokemon}>Sobre o Pokémon:</Text>

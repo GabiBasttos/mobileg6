@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
   container_bottom: {
     borderRadius: 10,
     backgroundColor: "#F6F6F6",
-    height: 'auto',
-    paddingBottom: 50
+    height: "auto",
+    paddingBottom: 50,
   },
 
   seta: {
@@ -28,8 +28,8 @@ export const styles = StyleSheet.create({
   },
 
   container_pokemon: {
-    flexDirection: 'column',
-    alignItems: 'flex-start'
+    flexDirection: "column",
+    alignItems: "flex-start",
   },
 
   nome: {
@@ -50,9 +50,6 @@ export const styles = StyleSheet.create({
     color: "#747476",
   },
 
-  tipoImagem: {
-  },
-
   pokemon: {
     width: 180,
     height: 180,
@@ -60,12 +57,10 @@ export const styles = StyleSheet.create({
     left: 25,
   },
 
-  tipo: {
-    fontFamily: "Inter_700Bold",
-    fontSize: 15,
-    textAlign: "left",
+  tipoImagem: {
     left: 200,
-    bottom: 90,
+    bottom: 80,
+    marginRight: 5,
   },
 
   sobrePokemon: {
@@ -73,7 +68,6 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "left",
     left: 111,
-    bottom: 35,
     color: "#fff",
   },
 
@@ -96,14 +90,14 @@ export const styles = StyleSheet.create({
     bottom: 60,
     marginLeft: 10,
     color: "#000",
-    alignSelf: 'center',
-    width: '100%'
+    alignSelf: "center",
+    width: "100%",
   },
 
   evolucao_container: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 30
+    marginBottom: 30,
   },
 
   evolucao_img: {

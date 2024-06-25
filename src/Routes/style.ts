@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     tabBarStyle: {
         backgroundColor: '#fff',
-        height: 60,
+        height: 70,
         justifyContent: 'center',
         alignItems: 'center'
     },

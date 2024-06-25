@@ -13,20 +13,18 @@ import iconeLogin from "../../Assets/iconeLogin.png";
 import { TextInputComponent } from "../../Components/TextInput";
 import { ButtonComponents } from "../../Components/ButtonComponents";
 import { useAuth } from "../../Hooks/useAuth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Login = () => {
+  const { nome, setNome, setPassword, password, loginAutentication } =
+    useAuth();
 
-  const { email, setEmail, setPassword, password, loginAutentication} = useAuth();
-
-  const handleEmail = (value: string) => setEmail(value);
-
+  const handleNome = (value: string) => setNome(value);
 
   const handlePassword = (value: string) => setPassword(value);
 
-
-
   const handleLogin = () => {
-    loginAutentication(email, password)
+    loginAutentication(nome, password);
   };
 
   return (
@@ -44,12 +42,10 @@ export const Login = () => {
           </View>
 
           <TextInputComponent
-            recebeplaceholder="Digite seu email"
-            // value={inputValue}
-            // onChangeText={(value) => setInputValue (value)} 
-            recebefuncao={handleEmail}
+            recebeplaceholder="Digite seu nome"
+            recebefuncao={handleNome}
             recebetipoinput={false}
-            recebevalue={email}
+            recebevalue={nome}
           />
 
           <TextInputComponent
@@ -59,7 +55,7 @@ export const Login = () => {
             recebevalue={password}
           />
 
-          {<ButtonComponents title="Entrar" /*onPress={handleAsyncStorage}*/ recebefuncao={handleLogin} />}
+          <ButtonComponents title="Entrar" recebefuncao={handleLogin} />
         </View>
       </>
     </TouchableWithoutFeedback>

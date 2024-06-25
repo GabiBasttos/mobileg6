@@ -1,8 +1,9 @@
+// Pages/Perfil/index.tsx
+
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
-import { useAuth } from '../../Hooks/useAuth';
+import { useAuth, PropsContexto } from '../../Hooks/useAuth';
 import { styles } from './style';
-import Bulbasaur from '../../Assets/Bulbasaur.png';
 import iconeHome from '../../Assets/iconeHome.png';
 
 const options = [
@@ -24,7 +25,7 @@ const options = [
 ];
 
 export function Perfil() {
-  const { email } = useAuth();
+  const { nome } = useAuth() as PropsContexto; // Acesso ao nome através do contexto
 
   const handleOptionPress = (link: string) => {
     Linking.openURL(link).catch((err) =>
@@ -42,15 +43,14 @@ export function Perfil() {
           source={{ uri: 'https://pa1.aminoapps.com/6717/929240dcbfc57a52f8c701bf904ce2d358070397_hq.gif' }}
           style={styles.profileImage}
         />
-        <Text style={styles.greeting}>Olá, {email}!</Text>
+        <Text style={styles.greeting}>Olá, {nome}!</Text>
       </View>
 
-      {/* Menu de opções */}
       <View style={styles.optionsContainer}>
         {options.map((option, index) => (
           <TouchableOpacity
             key={index}
-            style={[styles.optionItem, index === options.length - 1 && { borderBottomWidth: 0, paddingBottom: 0 }]}
+            style={styles.optionItem}
             onPress={() => handleOptionPress(option.link)}
           >
             <Image source={option.icon} style={styles.optionIcon} />

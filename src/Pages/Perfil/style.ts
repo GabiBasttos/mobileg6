@@ -11,6 +11,12 @@ export const styles = StyleSheet.create({
     top: 20,
     left: 20,
   },
+  seta: {
+    width: 36,
+    height: 36,
+    top: 40,
+    left: 14,
+  },
   backText: {
     color: '#FFF',
     fontSize: 30,
@@ -22,7 +28,7 @@ export const styles = StyleSheet.create({
   profileImage: {
     width: 250,
     height: 250,
-    borderRadius: 125, // Metade da largura ou altura para fazer o círculo
+    borderRadius: 150, // Metade da largura ou altura para fazer o círculo
     backgroundColor: '#FFF',
   },
   greetingContainer: {
@@ -65,6 +71,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     padding: 20,
     borderRadius: 10,
+    height: 250
   },
   optionItem: {
     flexDirection: 'row',
@@ -73,6 +80,10 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#DDD',
     paddingBottom: 10,
+  },
+  lastOptionItem: {
+    borderBottomWidth: 0,
+    marginBottom: 0,
   },
   optionIcon: {
     width: 50,

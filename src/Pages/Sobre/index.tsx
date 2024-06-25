@@ -179,7 +179,7 @@ export function SobrePokemon() {
         ))}
 
         <Text style={[styles.topicos, { color }]}>Evoluções:</Text>
-        {evolucao.map((evolucao) => (
+        {evolucao.map((evolucao, index) => (
           <View key={evolucao.name} style={styles.evolucao_container}>
             <Image
               source={{ uri: evolucao.image }}

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container_top: {
-    height: 330,
+    height: 330
   },
 
   container_bottom: {
@@ -65,9 +65,10 @@ export const styles = StyleSheet.create({
   sobrePokemon: {
     fontFamily: "Inter_700Bold",
     fontSize: 20,
-    textAlign: "left",
-    left: 111,
     color: "#fff",
+    position: 'absolute',
+    bottom: 10,
+    left: 80
   },
 
   topicos: {

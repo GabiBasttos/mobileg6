@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { styles } from "./style";
@@ -31,12 +31,6 @@ const tipoCor: { [key: string]: string } = {
   steel: "#4C91B2",
   water: "#58ABF6",
 };
-
-// type PokemonType = {
-//   type: {
-//     name: keyof typeof tipoCor;
-//   };
-// };
 
 export function SobrePokemon() {
   const route = useRoute<RouteProp<RouteParams, "SobrePokemon">>();
@@ -113,92 +107,106 @@ export function SobrePokemon() {
     : "#FFF";
 
   return (
-    <ScrollView style={{ backgroundColor }}>
-      <View style={styles.container_top}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
-            source={require("../../Assets/setaVoltar.png")}
-            alt="seta de voltar"
-            style={styles.seta}
-          />
-        </TouchableOpacity>
+    <FlatList
+      style={{ backgroundColor }}
+      data={[{ key: "top-section" }, ...evolucao, { key: "bottom-section" }]}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => {
+        if (item.key === "top-section") {
+          return (
+            <View style={styles.container_top}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Image
+                  source={require("../../Assets/setaVoltar.png")}
+                  alt="seta de voltar"
+                  style={styles.seta}
+                />
+              </TouchableOpacity>
 
-        <TouchableOpacity onPress={tornarFavorito}>
-          <Image
-            source={
-              favorito
-                ? require("../../Assets/iconeFavoritoClicado.png")
-                : require("../../Assets/iconeFavorito.png")
-            }
-            alt="ícone de coração para favoritar pokemon"
-            style={styles.heart}
-          />
-        </TouchableOpacity>
+              <TouchableOpacity onPress={tornarFavorito}>
+                <Image
+                  source={
+                    favorito
+                      ? require("../../Assets/iconeFavoritoClicado.png")
+                      : require("../../Assets/iconeFavorito.png")
+                  }
+                  alt="ícone de coração para favoritar pokemon"
+                  style={styles.heart}
+                />
+              </TouchableOpacity>
 
-        <Image
-          source={{ uri: pokemonData.sprites.front_default }}
-          alt={`Imagem de ${pokemonData.name}`}
-          style={styles.pokemon}
-        />
-
-        <View style={styles.container_pokemon}>
-          <Text style={styles.nome}>
-            {pokemonData.name.charAt(0).toUpperCase() +
-              pokemonData.name.slice(1)}
-          </Text>
-
-          <Text style={styles.number}>
-            #{pokemonData.id.toString().padStart(3, "0")}
-          </Text>
-
-          <View
-            style={{ flex: 1, flexDirection: "row" }} >
-            {pokemonData.types.map((typeInfo: any) => (
               <Image
-                key={typeInfo.type.name}
-                source={tipos[typeInfo.type.name as keyof typeof tipos]}
-                style={styles.tipoImagem}
+                source={{ uri: pokemonData.sprites.front_default }}
+                alt={`Imagem de ${pokemonData.name}`}
+                style={styles.pokemon}
               />
-            ))}
-          </View>
-        </View>
 
-        <Text style={styles.sobrePokemon}>Sobre o Pokémon:</Text>
-      </View>
+              <View style={styles.container_pokemon}>
+                <Text style={styles.nome}>
+                  {pokemonData.name.charAt(0).toUpperCase() +
+                    pokemonData.name.slice(1)}
+                </Text>
 
-      <View style={styles.container_bottom}>
-        <Text style={[styles.topicos, { color }]}>Descrição:</Text>
-        <Text style={styles.text}>{descricao}</Text>
+                <Text style={styles.number}>
+                  #{pokemonData.id.toString().padStart(3, "0")}
+                </Text>
 
-        <Text style={[styles.topicos, { color }]}>Habilidades:</Text>
-        {pokemonData.abilities.map((abilityInfo: any) => (
-          <Text key={abilityInfo.ability.name} style={styles.text}>
-            {abilityInfo.ability.name.charAt(0).toUpperCase() +
-              abilityInfo.ability.name.slice(1)}
-          </Text>
-        ))}
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  {pokemonData.types.map((typeInfo: any) => (
+                    <Image
+                      key={typeInfo.type.name}
+                      source={tipos[typeInfo.type.name as keyof typeof tipos]}
+                      style={styles.tipoImagem}
+                    />
+                  ))}
+                </View>
+              </View>
 
-        <Text style={[styles.topicos, { color }]}>Evoluções:</Text>
-        {evolucao.map((evolucao, index) => (
-          <View key={evolucao.name} style={styles.evolucao_container}>
-            <Image
-              source={{ uri: evolucao.image }}
-              style={styles.evolucao_img}
-            />
-            <Image
-              source={require("../../Assets/iconeSetaBaixo.png")}
-              alt="seta para baixo"
-              style={{
-                tintColor: backgroundColor,
-                top: 120,
-                right: 50,
-                width: 65,
-                height: 65,
-              }}
-            />
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+              <Text style={styles.sobrePokemon}>Sobre o Pokémon:</Text>
+            </View>
+          );
+        } else if (item.key === "bottom-section") {
+          return (
+            <View style={styles.container_bottom}>
+              <Text style={[styles.topicos, { color }]}>Descrição:</Text>
+              <Text style={styles.text}>{descricao}</Text>
+
+              <Text style={[styles.topicos, { color }]}>Habilidades:</Text>
+              {pokemonData.abilities.map((abilityInfo: any) => (
+                <Text key={abilityInfo.ability.name} style={styles.text}>
+                  {abilityInfo.ability.name.charAt(0).toUpperCase() +
+                    abilityInfo.ability.name.slice(1)}
+                </Text>
+              ))}
+
+              <Text style={[styles.topicos, { color }]}>Evoluções:</Text>
+              {evolucao.map((evolution: any, index: number) => (
+                <View style={styles.evolucao_container} key={index}>
+                  <Image
+                    source={{ uri: evolution.image }}
+                    style={styles.evolucao_img}
+                  />
+                  {index !== evolucao.length - 1 && (
+                    <Image
+                      source={require("../../Assets/iconeSetaBaixo.png")}
+                      alt="seta para baixo"
+                      style={{
+                        tintColor: backgroundColor,
+                        top: 120,
+                        right: 50,
+                        width: 65,
+                        height: 65,
+                      }}
+                    />
+                  )}
+                </View>
+              ))}
+            </View>
+          );
+        } else {
+          return null;
+        }
+      }}
+    />
   );
 }

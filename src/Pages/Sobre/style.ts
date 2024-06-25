@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#F6F6F6",
     height: "auto",
-    paddingBottom: 50,
   },
 
   seta: {

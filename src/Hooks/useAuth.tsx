@@ -4,16 +4,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 
 export type PropsContexto = {
-    email: string;
-    setEmail: (value: string) => void;
+    nome: string;
+    setNome: (value: string) => void;
     password: string;
     setPassword: (value: string) => void;
-    loginAutentication: (email: string, password: string) => void;
+    loginAutentication: (nome: string, password: string) => void;
+
 }
+      
 
 const ContextoAll = createContext<PropsContexto>({
-    email: '',
-    setEmail: () => { },
+    nome: '',
+    setNome: () => { },
     password: '',
     setPassword: () => { },
     loginAutentication: () => { },
@@ -21,25 +23,36 @@ const ContextoAll = createContext<PropsContexto>({
 
 export const AuthProvider = ({ children }: any) => {
 
-    const [email, setEmail] = useState<string>('');
+    const [nome, setNome] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navegando = useNavigation();
 
-    const loginAutentication = (email: string, password: string) => {
-        if(email === "" || password === ""){
-            Alert.alert("Credenciais inválidas")
-        } else{
-            navegando.navigate("StackTabsPages", {name: "Login"})
-        }
-       
+    const loginAutentication = (nome: string, password: string) => {
+      if (nome === "" || password === "") {
+        Alert.alert("Credenciais inválidas");
+      } else {
+        navegando.navigate("StackTabsPages", { name: "Login" });
+      }
     }
+
+    async function storedData(){
+        //armazenar valor no async storage
+        await AsyncStorage.setItem('@App1', nome);
+        
+      }
+      
+      async function getData(){
+        const response = await AsyncStorage.getItem("@App1");
+        if(response){
+          setNome(response);
+        }
+      }
 
     return (
 
-        <ContextoAll.Provider value={{ email, setEmail, password, setPassword, loginAutentication }}>
+        <ContextoAll.Provider value={{ nome, setNome, password, setPassword, loginAutentication }}>
             {children}
         </ContextoAll.Provider>
-
 
     )
 

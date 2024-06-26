@@ -113,8 +113,8 @@ export const styles = StyleSheet.create({
   },
   favoritosItem: {
     fontFamily: 'Inter_500Medium',
-    top: 1,
-    marginLeft: 72,
+    top: 10,
+    marginLeft: 8,
     fontSize: 15,
     color: "#000",
   },
@@ -123,5 +123,16 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     width: 68,
     height: 68,
+  },
+  favoritoItemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  pokemonImage: {
+    marginLeft: 13,
+    top: 10,
+    width: 50,
+    height: 50,
   },
 });

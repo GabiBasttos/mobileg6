@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -33,10 +33,37 @@ const options = [
   },
 ];
 
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+
 export function Perfil() {
   const { nome } = useAuth() as PropsContexto;
   const { favoritos } = useFavoritos();
   const navigation = useNavigation();
+  const [pokemonData, setPokemonData] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      try {
+        const data = await Promise.all(
+          favoritos.map(async (pokemonName) => {
+            const response = await fetch(
+              `${BASE_URL}/${pokemonName.toLowerCase()}`
+            );
+            if (!response.ok) {
+              throw new Error("Não foi possível obter os dados do Pokémon");
+            }
+            return response.json();
+          })
+        );
+        setPokemonData(data);
+      } catch (error) {
+        console.error("Erro ao buscar dados dos Pokémon favoritados:", error);
+        // Tratar erro aqui, se necessário
+      }
+    };
+
+    fetchPokemonData();
+  }, [favoritos]);
 
   const handleOptionPress = (link: string) => {
     Linking.openURL(link).catch((err) =>
@@ -45,54 +72,56 @@ export function Perfil() {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Image
-            source={require("../../Assets/setaVoltar.png")}
-            alt="seta de voltar"
-            style={styles.seta}
-          />
-        </TouchableOpacity>
-        <View style={styles.profileContainer}>
-          <Image source={dog} style={styles.profileImage} />
-          <Text style={styles.greeting}>Olá, {nome}!</Text>
-        </View>
+    <ScrollView style={styles.container}>
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Image
+          source={require("../../Assets/setaVoltar.png")}
+          alt="seta de voltar"
+          style={styles.seta}
+        />
+      </TouchableOpacity>
+      <View style={styles.profileContainer}>
+        <Image source={dog} style={styles.profileImage} />
+        <Text style={styles.greeting}>Olá, {nome}!</Text>
+      </View>
 
-        <View style={styles.optionsContainer}>
-          {options.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.optionItem,
-                index === options.length - 1 && styles.lastOptionItem,
-              ]}
-              onPress={() => handleOptionPress(option.link)}
-            >
-              <Image source={option.icon} style={styles.optionIcon} />
-              <Text style={styles.optionText}>{option.title}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+      <View style={styles.optionsContainer}>
+        {options.map((option, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[
+              styles.optionItem,
+              index === options.length - 1 && styles.lastOptionItem,
+            ]}
+            onPress={() => handleOptionPress(option.link)}
+          >
+            <Image source={option.icon} style={styles.optionIcon} />
+            <Text style={styles.optionText}>{option.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-        <View style={styles.favoritosContainer}>
-          <Image source={coracaofav} style={styles.optionFav} />
-          <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
-          {favoritos.length > 0 ? (
-            favoritos.map((favorito, index) => (
-              <Text key={index} style={styles.favoritosItem}>
-                {favorito}
-              </Text>
-            ))
-          ) : (
-            <Text style={styles.favoritosItem}>
-              Nenhum Pokémon favoritado ainda.
-            </Text>
-          )}
-        </View>
+      <View style={styles.favoritosContainer}>
+        <Image source={coracaofav} style={styles.optionFav} />
+        <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
+        {pokemonData.length > 0 ? (
+          pokemonData.map((pokemon, index) => (
+            <View key={index} style={styles.favoritoItemContainer}>
+              <Image
+                source={{ uri: pokemon.sprites.front_default }}
+                style={styles.pokemonImage}
+              />
+              <Text style={styles.favoritosItem}>{pokemon.name}</Text>
+            </View>
+          ))
+        ) : (
+          <Text style={styles.favoritosItem}>
+            Nenhum Pokémon favoritado ainda.
+          </Text>
+        )}
       </View>
     </ScrollView>
   );

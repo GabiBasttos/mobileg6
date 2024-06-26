@@ -104,16 +104,18 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   favoritosTitle: {
-    top: 6,
+    fontFamily: "Inter_700Bold",
+    top: 3,
     marginBottom: 10,
     marginLeft: 70,
     fontSize: 25,
     color: "#000",
   },
   favoritosItem: {
-    top: 5,
+    fontFamily: 'Inter_500Medium',
+    top: 1,
     marginLeft: 72,
-    fontSize: 18,
+    fontSize: 15,
     color: "#000",
   },
   optionFav: {

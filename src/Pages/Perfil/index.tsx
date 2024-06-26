@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Linking,
+  ScrollView,
+} from "react-native";
 import { useAuth, PropsContexto } from "../../Hooks/useAuth";
 import { styles } from "./style";
 import iconeHome from "../../Assets/iconeHome.png";
 import { useNavigation } from "@react-navigation/native";
 import dog from "../../Assets/dog.webp";
 import { useFavoritos } from "../../Components/Favorites";
-import coracaofav from "../../Assets/coracaofav.png"
+import coracaofav from "../../Assets/coracaofav.png";
 
 const options = [
   {
@@ -38,53 +45,55 @@ export function Perfil() {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Image
-          source={require("../../Assets/setaVoltar.png")}
-          alt="seta de voltar"
-          style={styles.seta}
-        />
-      </TouchableOpacity>
-      <View style={styles.profileContainer}>
-        <Image source={dog} style={styles.profileImage} />
-        <Text style={styles.greeting}>Olá, {nome}!</Text>
-      </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Image
+            source={require("../../Assets/setaVoltar.png")}
+            alt="seta de voltar"
+            style={styles.seta}
+          />
+        </TouchableOpacity>
+        <View style={styles.profileContainer}>
+          <Image source={dog} style={styles.profileImage} />
+          <Text style={styles.greeting}>Olá, {nome}!</Text>
+        </View>
 
-      <View style={styles.optionsContainer}>
-        {options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[
-              styles.optionItem,
-              index === options.length - 1 && styles.lastOptionItem,
-            ]}
-            onPress={() => handleOptionPress(option.link)}
-          >
-            <Image source={option.icon} style={styles.optionIcon} />
-            <Text style={styles.optionText}>{option.title}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+        <View style={styles.optionsContainer}>
+          {options.map((option, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.optionItem,
+                index === options.length - 1 && styles.lastOptionItem,
+              ]}
+              onPress={() => handleOptionPress(option.link)}
+            >
+              <Image source={option.icon} style={styles.optionIcon} />
+              <Text style={styles.optionText}>{option.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
-      <View style={styles.favoritosContainer}>
-        <Image source={coracaofav} style={styles.optionFav} />
-        <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
-        {favoritos.length > 0 ? (
-          favoritos.map((favorito, index) => (
-            <Text key={index} style={styles.favoritosItem}>
-              {favorito}
+        <View style={styles.favoritosContainer}>
+          <Image source={coracaofav} style={styles.optionFav} />
+          <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
+          {favoritos.length > 0 ? (
+            favoritos.map((favorito, index) => (
+              <Text key={index} style={styles.favoritosItem}>
+                {favorito}
+              </Text>
+            ))
+          ) : (
+            <Text style={styles.favoritosItem}>
+              Nenhum Pokémon favoritado ainda.
             </Text>
-          ))
-        ) : (
-          <Text style={styles.favoritosItem}>
-            Nenhum Pokémon favoritado ainda.
-          </Text>
-        )}
+          )}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
@@ -28,15 +28,22 @@ export const styles = StyleSheet.create({
   profileImage: {
     width: 250,
     height: 250,
-    borderRadius: 150, // Metade da largura ou altura para fazer o círculo
+    borderRadius: 150,
     backgroundColor: "#FFF",
+    borderWidth: 5,
+    borderColor: "#FFF",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 10,
   },
   greetingContainer: {
-    borderTopWidth: 1, // Adicionando barra superior
-    borderBottomWidth: 1, // Adicionando barra inferior
-    borderColor: "#FFF", // Cor da barra (branco neste exemplo)
-    paddingTop: 10, // Espaçamento acima da barra
-    paddingBottom: 10, // Espaçamento abaixo da barra
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: "#FFF",
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   greeting: {
     marginTop: 20,
@@ -44,30 +51,6 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     textAlign: "center",
   },
-  /*
-  favoritesTitle: {
-    marginTop: 40,
-    fontSize: 20,
-    color: "#FFF",
-  },
-  favoriteContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: "#A4DCE6",
-    borderRadius: 10,
-  },
-  favoriteImage: {
-    width: 50,
-    height: 50,
-  },
-  favoriteText: {
-    marginLeft: 10,
-    fontSize: 18,
-    color: "#000",
-  },
-  */
   optionsContainer: {
     marginTop: 40,
     backgroundColor: "#FFF",
@@ -112,7 +95,7 @@ export const styles = StyleSheet.create({
     color: "#000",
   },
   favoritosItem: {
-    fontFamily: 'Inter_500Medium',
+    fontFamily: "Inter_500Medium",
     top: 10,
     marginLeft: 8,
     fontSize: 15,
@@ -123,6 +106,7 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     width: 68,
     height: 68,
+    tintColor: "#FF6262",
   },
   favoritoItemContainer: {
     flexDirection: "row",

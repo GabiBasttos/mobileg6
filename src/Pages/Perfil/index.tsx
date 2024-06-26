@@ -13,7 +13,7 @@ import iconeHome from "../../Assets/iconeHome.png";
 import { useNavigation } from "@react-navigation/native";
 import dog from "../../Assets/dog.webp";
 import { useFavoritos } from "../../Components/Favorites";
-import coracaofav from "../../Assets/coracaofav.png";
+import iconeFavoritoClicado from "../../Assets/iconeFavoritoClicado.png";
 
 const options = [
   {
@@ -58,7 +58,6 @@ export function Perfil() {
         setPokemonData(data);
       } catch (error) {
         console.error("Erro ao buscar dados dos Pokémon favoritados:", error);
-        // Tratar erro aqui, se necessário
       }
     };
 
@@ -69,6 +68,10 @@ export function Perfil() {
     Linking.openURL(link).catch((err) =>
       console.error("Erro ao abrir o link:", err)
     );
+  };
+
+  const primeiraLetraMaiuscula = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   return (
@@ -105,7 +108,7 @@ export function Perfil() {
       </View>
 
       <View style={styles.favoritosContainer}>
-        <Image source={coracaofav} style={styles.optionFav} />
+        <Image source={iconeFavoritoClicado} style={styles.optionFav} />
         <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon, index) => (
@@ -114,7 +117,9 @@ export function Perfil() {
                 source={{ uri: pokemon.sprites.front_default }}
                 style={styles.pokemonImage}
               />
-              <Text style={styles.favoritosItem}>{pokemon.name}</Text>
+              <Text style={styles.favoritosItem}>
+                {primeiraLetraMaiuscula(pokemon.name)}
+              </Text>
             </View>
           ))
         ) : (

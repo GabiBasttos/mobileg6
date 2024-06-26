@@ -1,3 +1,4 @@
+import React from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   useFonts,
@@ -12,6 +13,7 @@ import {
   Inter_900Black,
 } from "@expo-google-fonts/inter";
 import { Routes } from "./src/Routes";
+import { FavoritosProvider } from "./src/Components/Favorites";
 
 export default function App() {
   const [fonteLoaded] = useFonts({
@@ -31,9 +33,9 @@ export default function App() {
   }
 
   return (
-    <>
+    <FavoritosProvider>
       <StatusBar style="auto" />
       <Routes />
-    </>
+    </FavoritosProvider>
   );
 }

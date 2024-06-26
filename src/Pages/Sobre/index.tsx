@@ -4,6 +4,7 @@ import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { styles } from "./style";
 import tipos from "../../Assets/Tipos/tipos";
+import { useFavoritos } from "../../Components/Favorites";
 
 type RouteParams = {
   SobrePokemon: {
@@ -32,6 +33,7 @@ const tipoCor: { [key: string]: string } = {
   water: "#58ABF6",
 };
 
+
 export function SobrePokemon() {
   const route = useRoute<RouteProp<RouteParams, "SobrePokemon">>();
   const { pokemonUrl } = route.params;
@@ -40,7 +42,7 @@ export function SobrePokemon() {
   const [pokemonData, setPokemonData] = useState<any>(null);
   const [descricao, setDescricao] = useState<string | null>(null);
   const [evolucao, setEvolucao] = useState<any[]>([]);
-  const [favorito, setFavorito] = useState(false);
+  const { favoritos, addFavorito, removeFavorito } = useFavoritos();
 
   useEffect(() => {
     const fetchPokemonData = async () => {
@@ -49,18 +51,12 @@ export function SobrePokemon() {
         setPokemonData(response.data);
 
         const speciesResponse = await axios.get(response.data.species.url);
-        const evolutionChainResponse = await axios.get(
-          speciesResponse.data.evolution_chain.url
-        );
+        const evolutionChainResponse = await axios.get(speciesResponse.data.evolution_chain.url);
 
         const descriptionEntry = speciesResponse.data.flavor_text_entries.find(
           (entry: any) => entry.language.name === "en"
         );
-        setDescricao(
-          descriptionEntry
-            ? descriptionEntry.flavor_text
-            : "No description available."
-        );
+        setDescricao(descriptionEntry ? descriptionEntry.flavor_text : "No description available.");
 
         const evolutionData = evolutionChainResponse.data.chain;
         const evolutionArray = [];
@@ -86,8 +82,16 @@ export function SobrePokemon() {
     fetchPokemonData();
   }, [pokemonUrl]);
 
-  const tornarFavorito = () => {
-    setFavorito(!favorito);
+  const favorito = pokemonData && favoritos.includes(pokemonData.name);
+
+  const toggleFavorito = () => {
+    if (pokemonData) {
+      if (favorito) {
+        removeFavorito(pokemonData.name);
+      } else {
+        addFavorito(pokemonData.name);
+      }
+    }
   };
 
   if (!pokemonData) {
@@ -98,13 +102,8 @@ export function SobrePokemon() {
     );
   }
 
-  const backgroundColor = pokemonData.types.length
-    ? tipoCor[pokemonData.types[0].type.name]
-    : "#FFF";
-
-  const color = pokemonData.types.length
-    ? tipoCor[pokemonData.types[0].type.name]
-    : "#FFF";
+  const backgroundColor = pokemonData.types.length ? tipoCor[pokemonData.types[0].type.name] : "#FFF";
+  const color = pokemonData.types.length ? tipoCor[pokemonData.types[0].type.name] : "#FFF";
 
   return (
     <FlatList
@@ -123,7 +122,7 @@ export function SobrePokemon() {
                 />
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={tornarFavorito}>
+              <TouchableOpacity onPress={toggleFavorito}>
                 <Image
                   source={
                     favorito
@@ -143,8 +142,7 @@ export function SobrePokemon() {
 
               <View style={styles.container_pokemon}>
                 <Text style={styles.nome}>
-                  {pokemonData.name.charAt(0).toUpperCase() +
-                    pokemonData.name.slice(1)}
+                  {pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}
                 </Text>
 
                 <Text style={styles.number}>
@@ -174,8 +172,7 @@ export function SobrePokemon() {
               <Text style={[styles.topicos, { color }]}>Habilidades:</Text>
               {pokemonData.abilities.map((abilityInfo: any) => (
                 <Text key={abilityInfo.ability.name} style={styles.text}>
-                  {abilityInfo.ability.name.charAt(0).toUpperCase() +
-                    abilityInfo.ability.name.slice(1)}
+                  {abilityInfo.ability.name.charAt(0).toUpperCase() + abilityInfo.ability.name.slice(1)}
                 </Text>
               ))}
 

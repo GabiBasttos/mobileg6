@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -28,30 +28,23 @@ export const styles = StyleSheet.create({
   profileImage: {
     width: 250,
     height: 250,
-    borderRadius: 150,
+    borderRadius: 150, // Metade da largura ou altura para fazer o círculo
     backgroundColor: "#FFF",
-    borderWidth: 5,
-    borderColor: "#FFF",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 10,
   },
   greetingContainer: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
-    paddingTop: 10,
-    paddingBottom: 10,
+    borderTopWidth: 1, // Adicionando barra superior
+    borderBottomWidth: 1, // Adicionando barra inferior
+    borderColor: "#FFF", // Cor da barra (branco neste exemplo)
+    paddingTop: 10, // Espaçamento acima da barra
+    paddingBottom: 10, // Espaçamento abaixo da barra
   },
   greeting: {
     marginTop: 20,
-    fontSize: 24,
+    fontSize: 25,
     color: "#FFF",
     textAlign: "center",
-    fontFamily: "Inter_600SemiBold",
   },
+  /*
   favoritesTitle: {
     marginTop: 40,
     fontSize: 20,
@@ -74,17 +67,13 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: "#000",
   },
+  */
   optionsContainer: {
     marginTop: 40,
     backgroundColor: "#FFF",
     padding: 20,
     borderRadius: 10,
     height: 250,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 10,
   },
   optionItem: {
     flexDirection: "row",
@@ -106,6 +95,31 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 18,
     color: "#000",
-    fontFamily: "Inter_400Regular",
+  },
+  favoritosContainer: {
+    alignItems: "baseline",
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+  },
+  favoritosTitle: {
+    top: 6,
+    marginBottom: 10,
+    marginLeft: 70,
+    fontSize: 25,
+    color: "#000",
+  },
+  favoritosItem: {
+    top: 5,
+    marginLeft: 72,
+    fontSize: 18,
+    color: "#000",
+  },
+  optionFav: {
+    position: "absolute",
+    marginLeft: 10,
+    width: 68,
+    height: 68,
   },
 });

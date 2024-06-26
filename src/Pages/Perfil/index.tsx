@@ -5,6 +5,8 @@ import { styles } from "./style";
 import iconeHome from "../../Assets/iconeHome.png";
 import { useNavigation } from "@react-navigation/native";
 import dog from "../../Assets/dog.webp";
+import { useFavoritos } from "../../Components/Favorites";
+import coracaofav from "../../Assets/coracaofav.png"
 
 const options = [
   {
@@ -26,6 +28,7 @@ const options = [
 
 export function Perfil() {
   const { nome } = useAuth() as PropsContexto;
+  const { favoritos } = useFavoritos();
   const navigation = useNavigation();
 
   const handleOptionPress = (link: string) => {
@@ -65,6 +68,22 @@ export function Perfil() {
             <Text style={styles.optionText}>{option.title}</Text>
           </TouchableOpacity>
         ))}
+      </View>
+
+      <View style={styles.favoritosContainer}>
+        <Image source={coracaofav} style={styles.optionFav} />
+        <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
+        {favoritos.length > 0 ? (
+          favoritos.map((favorito, index) => (
+            <Text key={index} style={styles.favoritosItem}>
+              {favorito}
+            </Text>
+          ))
+        ) : (
+          <Text style={styles.favoritosItem}>
+            Nenhum Pokémon favoritado ainda.
+          </Text>
+        )}
       </View>
     </View>
   );

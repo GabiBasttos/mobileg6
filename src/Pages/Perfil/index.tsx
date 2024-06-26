@@ -13,7 +13,7 @@ import iconeHome from "../../Assets/iconeHome.png";
 import { useNavigation } from "@react-navigation/native";
 import dog from "../../Assets/dog.webp";
 import { useFavoritos } from "../../Components/Favorites";
-import iconeFavoritoClicado from "../../Assets/iconeFavoritoClicado.png";
+import coracaofav from "../../Assets/coracaofav.png";
 
 const options = [
   {
@@ -108,7 +108,7 @@ export function Perfil() {
       </View>
 
       <View style={styles.favoritosContainer}>
-        <Image source={iconeFavoritoClicado} style={styles.optionFav} />
+        <Image source={coracaofav} style={styles.optionFav} />
         <Text style={styles.favoritosTitle}>Pokémons Favoritados:</Text>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon, index) => (

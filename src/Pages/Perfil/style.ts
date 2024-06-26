@@ -103,10 +103,10 @@ export const styles = StyleSheet.create({
   },
   optionFav: {
     position: "absolute",
-    marginLeft: 10,
-    width: 68,
-    height: 68,
-    tintColor: "#FF6262",
+    marginLeft: 20,
+    marginTop: 10,
+    width: 50,
+    height: 50,
   },
   favoritoItemContainer: {
     flexDirection: "row",
